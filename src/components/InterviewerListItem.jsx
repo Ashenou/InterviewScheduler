@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const InterviewerListItem = (props) => {
 
-    const { id, name, avatar, selected, setInterviewer } = props;
+    const {name, avatar, selected, setInterviewer } = props;
 
 
     //const onClickHandle()
