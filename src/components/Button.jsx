@@ -2,7 +2,7 @@ import React from "react";
 
 import "components/Button.scss";
 import classnames from "classnames";
-import { onclick } from "min-document";
+//import { onclick } from "min-document";
 
 export default function Button(props) {
 
