@@ -10,7 +10,7 @@ const InterviewerListItem = (props) => {
     // selected:boolean - to determine if an interview is selected or not
     // setInterviewer:function - sets the interviewer upon selection
 
-    const {name, avatar, selected, setInterviewer } = props;
+    const { name, avatar, selected, setInterviewer } = props;
 
     const classNameItem = classNames("interviewers__item", {
         "interviewers__item--selected": selected

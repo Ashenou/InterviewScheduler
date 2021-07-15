@@ -3,12 +3,12 @@ import DayListItem from "./DayListItem";
 //import {days} from "../../stories/index";
 
 export default function DayList(props) {
-    const { days } = props;
 
     return (
         <ul>
-            {days.map(day => {
+            {props.days.map(day => {
                 return (<DayListItem
+                    key={day.name}
                     name={day.name}
                     spots={day.spots}
                     selected={day.name === props.day}
