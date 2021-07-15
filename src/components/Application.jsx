@@ -73,8 +73,6 @@ export default function Application(props) {
     appointments: {}
   });
 
-
-
   useEffect(() => {
     Promise.all([axios.get("api/days"), axios.get("api/appointments"), axios.get("api/interviewers")]).then((all) => {
       setState(prev => {
@@ -94,11 +92,32 @@ export default function Application(props) {
 
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    // console.log(id, interview);
+
+    //Gets the appointment information to edit it while keeping all values from existing appointment 
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    //console.log("Line 102",appointment);
+    // we update that appointment object in the appointments object using the id
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    // the function returns a promise to be async so we can set the mode to SHOW after getting the data 
+    return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+      setState({
+        ...state,
+        appointments
+      });
+    }).catch((err) => console.log(err.message));
   }
 
 
-  
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -129,7 +148,7 @@ export default function Application(props) {
             key={appointment.id}
             id={appointment.id}
             time={appointment.time}
-            interview={interview} interviewers={interviewers} bookInterview={bookInterview}/>)
+            interview={interview} interviewers={interviewers} bookInterview={bookInterview} />)
         })}
         <Appointment key="last" time="5pm" />
       </section>
