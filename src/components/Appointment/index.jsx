@@ -57,10 +57,7 @@ const Appointment = (props) => {
 
   function edit(name, interviewer) {
     console.log('58 :>> ', name, interviewer);
-    const interview = {
-      student: name,
-      interviewer
-    };
+
     transition(EDITING);
     // changes mode to SAVING and renders the corresponding componennt(<Status />)
     // Waits until data is back from the request in application then changes the mode of the render
