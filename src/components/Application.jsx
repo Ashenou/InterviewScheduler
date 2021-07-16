@@ -113,7 +113,7 @@ export default function Application(props) {
         ...state,
         appointments
       });
-    }).catch((err) => console.log(err.message));
+    });
   }
 
   function cancelInterview(id){
@@ -139,7 +139,7 @@ export default function Application(props) {
         ...state,
         appointments
       });
-    }).catch((err) => console.log(err.message));
+    });
   }
 
   return (
