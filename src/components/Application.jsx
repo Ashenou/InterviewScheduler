@@ -106,7 +106,7 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-
+    console.log(interview);
     // the function returns a promise to be async so we can set the mode to SHOW after getting the data 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       setState({
@@ -116,7 +116,31 @@ export default function Application(props) {
     }).catch((err) => console.log(err.message));
   }
 
+  function cancelInterview(id){
 
+    //console.log(interview);
+     //const interviewer = state.appointments[id];
+     console.log(props);
+    //Gets the appointment information to edit it while keeping all values from existing appointment 
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    //console.log(appointment);
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    //console.log("id in application",id)
+   // console.log(appointments);
+    //the function returns a promise to be async so we can set the mode to SHOW after getting the data 
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      setState({
+        ...state,
+        appointments
+      });
+    }).catch((err) => console.log(err.message));
+  }
 
   return (
     <main className="layout">
@@ -148,7 +172,9 @@ export default function Application(props) {
             key={appointment.id}
             id={appointment.id}
             time={appointment.time}
-            interview={interview} interviewers={interviewers} bookInterview={bookInterview} />)
+            interview={interview} interviewers={interviewers} bookInterview={bookInterview}
+             cancelInterview={cancelInterview}
+             />)
         })}
         <Appointment key="last" time="5pm" />
       </section>
