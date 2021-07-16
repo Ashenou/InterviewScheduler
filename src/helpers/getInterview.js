@@ -11,7 +11,6 @@ export const getInterview = (state, interview) => {
     // console.log("state.interviewers",state.interviewers)
     if (!interview) return null;
 
-
   return {
     student: interview.student,
     interviewer: state.interviewers[interview.interviewer],
