@@ -67,16 +67,13 @@ const Appointment = (props) => {
     console.log('58 :>> ', name, interviewer);
 
     transition(EDITING);
-    // changes mode to SAVING and renders the corresponding componennt(<Status />)
-    // Waits until data is back from the request in application then changes the mode of the render
-    //props.bookInterview(props.id, interview).then(() => transition(SHOW));
   }
 
-  // when user closes confirm
+  // When user closes confirm message after saving or editing
   function close() {
     transition(SHOW);
   }
-  console.log('interview :>> ', props.interview);
+
 
 
   return (
@@ -98,8 +95,10 @@ const Appointment = (props) => {
       {mode === CONFIRM && <Confirm message="Are you sure you want to delete this?" onConfirm={destroy} onCancel={back} />}
       {mode === DELETING && <Status message={'Deleting...'} />}
 
+      {/* Editing an interview and display Form component to make the changes*/}
       {mode === EDITING && <Form interviewers={props.interviewers} onSave={save} onCancel={back} name={props.interview.student} interviewer={props.interview.interviewer.id} />}
 
+      {/* Display messages when confirm */}
       {mode === ERROR_DELETE && <Error message={"Could not cancel appointment"} onClose={close} />}
       {mode === ERROR_SAVE && <Error message={"Could not save appointment"} onClose={close} />}
     </article>

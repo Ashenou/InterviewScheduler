@@ -37,12 +37,6 @@ const Form = (props) => {
         setInterviewer(null);
         props.onCancel();
     }
-    /*No Complete behaviour */
-    // const Save = (event) => {
-    //     //event.preventDefault();
-    //     props.onSave(name,interviewer);
-    // }
-    console.log(props)
     return (<main className="appointment__card appointment__card--create">
         <section className="appointment__card-left">
             <form autoComplete="off" onSubmit={event => event.preventDefault()}>
