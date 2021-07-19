@@ -21,7 +21,7 @@ const Appointment = (props) => {
   const CONFIRM = "CONFIRM";
   const EDITING = "EDITING";
   const ERROR_DELETE = "ERROR_DELETE";
-  const ERROR_SAVE = " ERROR_SAVE ";
+  const ERROR_SAVE = "ERROR_SAVE";
 
   // onAdd:Function to be called when the user clicks the Add button
   //const timeSlot = props.interview.map()
@@ -38,12 +38,17 @@ const Appointment = (props) => {
     };
 
     // changes mode to SAVING and renders the corresponding componennt(<Status />)
-    transition(SAVING, true);
+
     // Waits until data is back from the request in application then changes the mode of the render
-    props
-      .bookInterview(props.id, interview)
-      .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE, true));
+    if (name && interviewer) {
+      props
+        .bookInterview(props.id, interview)
+        .then(() => transition(SHOW))
+        .catch(error => transition(ERROR_SAVE, true));
+    }
+    else {
+      transition(ERROR_SAVE);
+    }
   }
 
   // Show the conifrmation message to delete
@@ -64,14 +69,13 @@ const Appointment = (props) => {
 
   // EDITS current interview
   function edit(name, interviewer) {
-    console.log('58 :>> ', name, interviewer);
-
     transition(EDITING);
   }
 
   // When user closes confirm message after saving or editing
   function close() {
-    transition(SHOW);
+    mode === ERROR_SAVE && back();
+    mode === ERROR_DELETE && back();
   }
 
 
@@ -84,8 +88,7 @@ const Appointment = (props) => {
       {mode === EMPTY && <Empty onAdd={() => { transition(CREATE) }} id={props.id} />}
       {/* Display Form to Add new interview */}
       {mode === SHOW && (
-        <Show id={props.id} time={props.time} interview={props.interview} onDelete={cancel} onEdit={edit}
-        />
+        <Show id={props.id} time={props.time} interview={props.interview} onDelete={cancel} onEdit={edit} />
       )}
       {/* book a new interview then display a saving message */}
       {mode === CREATE && <Form interviewers={props.interviewers} onCancel={back} onSave={save} />}
