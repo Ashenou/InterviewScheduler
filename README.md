@@ -1,4 +1,6 @@
 # Interview Scheduler
+An interview scheduler app using react that would allow you to schedule interviews with a list of interviewers and check the availability
+
 
 ## Setup
 
