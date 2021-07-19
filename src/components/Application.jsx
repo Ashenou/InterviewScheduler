@@ -4,9 +4,8 @@ import DayList from "components/DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 
-import { getInterview } from "../helpers/getInterview.js";
-import { getAppointmentsForDay } from "../helpers/getAppointmentsForDay";
-import { getInterviewersForDay } from "../helpers/getInterviewersForDay";
+
+import {getInterview,getInterviewersForDay,getAppointmentsForDay } from '../helpers/selectors';
 
 import useApplicationData from "../hooks/useApplicationData";
 
