@@ -41,11 +41,12 @@ const Form = (props) => {
         <section className="appointment__card-left">
             <form autoComplete="off" onSubmit={event => event.preventDefault()}>
                 <input
+                    type="text"
                     className="appointment__create-input text--semi-bold"
+                    placeholder="Enter Student Name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                    type="text"
-                    placeholder="Enter Student Name"
+                    data-testid="student-name-input"
                 />
             </form>
             <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />

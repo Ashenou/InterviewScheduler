@@ -81,7 +81,7 @@ const Appointment = (props) => {
 
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
 
       {/* Componenet to display where an interview time slot is available */}
